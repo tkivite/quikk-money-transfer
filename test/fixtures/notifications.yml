@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  message: MyText
+  recipient: MyString
+  scheduled: false
+  notification_type: 1
+  datetime: 2023-04-19 11:22:20
+
+two:
+  message: MyText
+  recipient: MyString
+  scheduled: false
+  notification_type: 1
+  datetime: 2023-04-19 11:22:20
