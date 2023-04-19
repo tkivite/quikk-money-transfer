@@ -6,12 +6,10 @@ class CreateTransactions < ActiveRecord::Migration[7.0]
       t.datetime :date_of_transaction
       t.integer :status
 
-      t.references :sender
-      t.references :recipient
+      t.references :sender, foreign_key: { to_table: 'accounts' }, type: :uuid
+      t.references :recipient, foreign_key: { to_table: 'accounts' }, type: :uuid
 
       t.timestamps
     end
-    add_foreign_key :notifications, :users, column: :sender_id, primary_key: :id
-    add_foreign_key :notifications, :users, column: :recipient_id, primary_key: :id
   end
 end

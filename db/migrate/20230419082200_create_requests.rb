@@ -5,7 +5,7 @@ class CreateRequests < ActiveRecord::Migration[7.0]
       t.datetime :start_date
       t.datetime :end_date
       t.integer :status
-      t.references :users, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: true,type: :uuid
 
       t.timestamps
     end

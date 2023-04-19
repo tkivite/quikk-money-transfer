@@ -5,7 +5,7 @@ class CreateAccounts < ActiveRecord::Migration[7.0]
       t.string :currency
       t.decimal :balance
       t.integer :status
-      t.references :users, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: true, type: :uuid
       t.timestamps
     end
   end
