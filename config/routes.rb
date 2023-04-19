@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resources :requests
   resources :transactions
   resources :accounts
-  resources :users
+  resources :users, param: :_id
+  post '/auth/login', to: 'authentication#authenticate'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
