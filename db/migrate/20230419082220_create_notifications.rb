@@ -6,6 +6,7 @@ class CreateNotifications < ActiveRecord::Migration[7.0]
       t.boolean :scheduled
       t.integer :notification_type
       t.datetime :datetime
+      t.integer :status
 
       t.timestamps
     end

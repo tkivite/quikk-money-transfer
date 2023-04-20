@@ -32,6 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_082220) do
     t.boolean "scheduled"
     t.integer "notification_type"
     t.datetime "datetime"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -52,6 +53,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_082220) do
     t.decimal "amount"
     t.datetime "date_of_transaction"
     t.integer "status"
+    t.string "status_description"
+    t.string "reference"
+    t.integer "transaction_type"
     t.uuid "sender_id"
     t.uuid "recipient_id"
     t.datetime "created_at", null: false
