@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-
+#  Fetch user transactions
   def index
     @my_transactions = Transaction.my_transactions(current_user).joins(:sender).joins(:recipient)
     render json: @my_transactions, status: 200
