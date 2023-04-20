@@ -6,12 +6,12 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all
-    render json: @users , except: [:password_digest], status: :ok
+    render json: @users.to_json(include: :account) , except: [:password_digest], status: :ok
   end
 
   # GET /users/{username}
   def show
-    render json: @user, status: :ok
+    render json: @user.includes(:account), status: :ok
   end
 
   # POST /users
