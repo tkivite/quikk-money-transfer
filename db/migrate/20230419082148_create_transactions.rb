@@ -5,6 +5,7 @@ class CreateTransactions < ActiveRecord::Migration[7.0]
       t.decimal :amount
       t.datetime :date_of_transaction
       t.integer :status
+      t.integer :transaction_type
 
       t.references :sender, foreign_key: { to_table: 'accounts' }, type: :uuid
       t.references :recipient, foreign_key: { to_table: 'accounts' }, type: :uuid
