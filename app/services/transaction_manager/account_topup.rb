@@ -1,18 +1,19 @@
-module TransactionManager
-    class AccountTopup < ApplicationService
-        attr_reader :transaction
-  
-        def initialize(transaction)
-            @transaction = transaction
-            # @transaction
-        end
+# frozen_string_literal: true
 
-        def call
-            account = @transaction.recipient
-            balance = account.balance + @transaction.amount
-            account.balance = balance
-            account.save!
-        end
-    
+module TransactionManager
+  class AccountTopup < ApplicationService
+    attr_reader :transaction
+
+    def initialize(transaction)
+      @transaction = transaction
+      # @transaction
     end
+
+    def call
+      account = @transaction.recipient
+      balance = account.balance + @transaction.amount
+      account.balance = balance
+      account.save!
+    end
+  end
 end

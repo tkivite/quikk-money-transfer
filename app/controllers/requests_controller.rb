@@ -1,12 +1,13 @@
-class RequestsController < ApplicationController
+# frozen_string_literal: true
 
-       # POST /request
+class RequestsController < ApplicationController
+  # POST /request
   def create
     @request = Request.new(request_params)
     @request.user = current_user
     if @request.save
       ProcessStatementRequest.call(@request)
-      render json: @request , status: :created
+      render json: @request, status: :created
     else
       render json: { errors: @request.errors.full_messages },
              status: :unprocessable_entity
@@ -17,7 +18,7 @@ class RequestsController < ApplicationController
 
   def request_params
     params.permit(
-      :start_date,  :end_date, :request_type
+      :start_date, :end_date, :request_type
     )
   end
 end
