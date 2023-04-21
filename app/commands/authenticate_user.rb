@@ -13,7 +13,7 @@ class AuthenticateUser
     return errors.add :user_authentication, 'invalid credentials' unless user
 
     token = JsonWebToken.encode(user_id: user.id)
-    { user: user, access_token: token }
+    { user: user, account: user.account, access_token: token }
   end
 
   private
