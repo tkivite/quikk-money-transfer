@@ -1,7 +1,0 @@
-ENV["DEV_DB_URL"] = "postgres://postgres:postgres@localhost/quikk_money_transfer_development"
-ENV["TEST_DB_URL"] = "postgres://postgres:postgres@localhost/quikk_money_transfer_test"
-ENV["PROD_DB_URL"] = "postgres://postgres:postgres@localhost/quikk_money_transfer_production"
-ENV["JWT_TOKEN_KEY"] = "keysareawesome"
-ENV["HOLDING_ACCT_ID"] = "4ff04ce6-119c-4426-a6a5-549b57029e3e"
-ENV['GMAIL_USERNAME'] = "okerioh@gmail.com"
-ENV['GMAIL_PASSWORD'] = "irptdmfewtptocus"
