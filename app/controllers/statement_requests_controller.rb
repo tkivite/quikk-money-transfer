@@ -6,8 +6,7 @@ class StatementRequestsController < ApplicationController
     @statement_request = StatementRequest.new(request_params)
     @statement_request.user = current_user
     if @statement_request.save
-      result = ProcessStatementRequest.call(@statement_request)
-      byebug
+      ProcessStatementRequest.call(@statement_request)
       render json: @statement_request, status: :created
     else
       render json: { errors: @statement_request.errors.full_messages },
