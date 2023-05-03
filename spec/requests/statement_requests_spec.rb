@@ -9,6 +9,13 @@ RSpec.describe StatementRequestsController, type: :request do
       request_type: 0
     }
   end
+  let(:invalid_params) do
+    {
+      start_date: nil,
+      end_date: Date.today,
+      request_type: 0
+    }
+  end
   let(:valid_headers) do
     { Authorization: "Bearer #{authenticate(user)}" }
   end
@@ -26,6 +33,22 @@ RSpec.describe StatementRequestsController, type: :request do
         post statement_requests_url,
              params: valid_params, headers: valid_headers
         expect(response).to have_http_status(:created)
+        expect(response.content_type).to match(a_string_including('application/json'))
+      end
+    end
+
+    context 'with invalid parameters' do
+      it 'does not create a new statement request' do
+        expect do
+          post statement_requests_url,
+               params: invalid_params, headers: valid_headers, as: :json
+        end.to change(StatementRequest, :count).by(0)
+      end
+
+      it 'renders a JSON response with errors for the new statement request' do
+        post statement_requests_url,
+             params: invalid_params, headers: valid_headers, as: :json
+        expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
