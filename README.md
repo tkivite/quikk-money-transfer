@@ -55,3 +55,23 @@ https://quick-apis.herokuapp.com/
 Postman collection
 
 https://documenter.getpostman.com/view/1917118/2s93Y3ugCX
+
+
+
+
+
+Proposed improvements: TODO
+
+1. Model Accounts: Add default currency, default balance
+2. Model User - Add callback after_create to create user account, remove logic from user controller
+3. Change resource named request across the application to statement_requests
+4. On Transaction remove currency , add currency validation during transfer
+5. Move self.implicit_order_column = 'created_at' to default model
+6. Implement Balance updates as callback in the transaction model ( after_create) so they can be performed as a transaction in the db
+7. Frontend screens -  register, updating of balances, update dashboard transactions during topup and fundstransfer
+
+7. API versioning *
+8. 
+
+
+
