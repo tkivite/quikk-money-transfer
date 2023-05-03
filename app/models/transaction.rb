@@ -32,7 +32,7 @@ class Transaction < ApplicationRecord
   end
 
   def validate_currency
-    return if sender.currency == recipient.currency
+    return unless sender.currency != recipient.currency
 
     errors.add(:base, 'different account currency')
   end
