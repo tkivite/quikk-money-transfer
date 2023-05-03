@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_19_082220) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_03_083640) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "accounts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "account_number"
-    t.string "currency"
-    t.decimal "balance"
+    t.string "currency", default: "KES"
+    t.decimal "balance", default: "0.0"
     t.integer "status"
     t.uuid "user_id", null: false
     t.datetime "created_at", null: false
@@ -49,7 +49,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_082220) do
   end
 
   create_table "transactions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "currency"
     t.decimal "amount"
     t.datetime "date_of_transaction"
     t.integer "status"
