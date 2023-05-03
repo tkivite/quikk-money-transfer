@@ -25,7 +25,7 @@ class TransactionsController < ApplicationController
    outgoing_transactions = Transaction.my_outgoing(current_user).limit(5)
    topup_transactions = Transaction.my_topups(current_user).limit(5)
 
-   render json: { incoming_transactions: incoming_transactions, outgoing_transactions: outgoing_transactions, topup_transactions: topup_transactions},
+   render json: { incoming_transactions: incoming_transactions, outgoing_transactions: outgoing_transactions, topup_transactions: topup_transactions, account: current_user.account},
              status: :ok
     
   end
