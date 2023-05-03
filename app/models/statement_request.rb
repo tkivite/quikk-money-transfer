@@ -9,4 +9,5 @@ class StatementRequest < ApplicationRecord
   def set_default_values
     self.status ||= 0
   end
+
 end
