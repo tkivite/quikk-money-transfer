@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     render json: @users.to_json(include: :account), except: [:password_digest], status: :ok
   end
 
-  # GET /users/{username}
+  # GET /users/{_id}
   def show
     render json: @user.includes(:account), status: :ok
   end
@@ -20,15 +20,14 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      account = create_account(@user)
-      render json: { user: @user, account: account }, status: :created
+      render json: @user.to_json(include: :account), except: [:password_digest], status: :created
     else
       render json: { errors: @user.errors.full_messages },
              status: :unprocessable_entity
     end
   end
 
-  # PUT /users/{id}
+  # PUT /users/{_id}
   def update
     return if @user.update(user_params)
 
@@ -36,7 +35,7 @@ class UsersController < ApplicationController
            status: :unprocessable_entity
   end
 
-  # DELETE /users/{id}
+  # DELETE /users/{_id}
   def destroy
     @user.destroy
   end
@@ -52,16 +51,6 @@ class UsersController < ApplicationController
   def user_params
     params.permit(
       :surname, :othernames, :email, :mobile, :password, :password_confirmation
-    )
-  end
-
-  def create_account(user)
-    Account.create(
-      account_number: @user.surname,
-      user_id: user.id,
-      currency: 'KES',
-      balance: 0.00,
-      status: 1
     )
   end
 end
