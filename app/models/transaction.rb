@@ -16,12 +16,12 @@ class Transaction < ApplicationRecord
               class_name: 'Account',
               foreign_key: 'recipient_id'
 
-  before_save :validate_transaction_type, :set_default_values, :check_user
+  before_save :validate_transaction_type, :validate_currency, :set_default_values, :check_user
   after_create :update_balances
   # after_save :check_user
 
   # Validations
-  validates_presence_of :amount, :currency, :sender_id, :recipient_id, :transaction_type
+  validates_presence_of :amount, :sender_id, :recipient_id, :transaction_type
   validates :amount, numericality: { greater_than: 0 }
   validates :date_of_transaction, comparison: { less_than: Time.now.strftime('%Y%m%d%H%M%S%L') }
 
@@ -29,6 +29,12 @@ class Transaction < ApplicationRecord
     return unless (sender_id == recipient_id) && transaction_type != 0
 
     errors.add(:base, 'invalid transaction type')
+  end
+
+  def validate_currency
+    return unless sender.currency != recipient.currency
+
+    errors.add(:base, 'different account currency')
   end
 
   def check_user
