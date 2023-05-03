@@ -42,6 +42,10 @@ RSpec.describe TransactionsController, type: :request do
         expect(Transaction.count).to eq(1)
       end
 
+      it "returns insufficient balance " do
+        expect(json_body['status_description']).to eq("insufficient balance")
+      end
+
       it "returns a success response" do
         expect(response).to have_http_status(:created)
       end
@@ -65,55 +69,4 @@ RSpec.describe TransactionsController, type: :request do
     end
   end
 
-  # describe "PUT /transactions/:id" do
-  #   let!(:user) { create(:user) }
-  #   let(:new_surname) { "Smith" }
-  #   let(:valid_params) { { surname: new_surname } }
-
-  #   context "with valid params" do
-  #     before do
-  #       put "/transactions/#{user.id}", params: valid_params
-  #     end
-
-  #     it "updates the user" do
-  #       expect(user.reload.surname).to eq(new_surname)
-  #     end
-
-  #     it "returns a success response" do
-  #       expect(response).to have_http_status(:success)
-  #     end
-  #   end
-
-  #   context "with invalid params" do
-  #     let(:invalid_params) { { email: "" } }
-
-  #     before do
-  #       put "/transactions/#{user.id}", params: invalid_params
-  #     end
-
-  #     it "does not update the user" do
-  #       expect(user.reload.email).to_not eq("")
-  #     end
-
-  #     it "returns an error response" do
-  #       expect(response).to have_http_status(:unprocessable_entity)
-  #     end
-  #   end
-  # end
-
-  # describe "DELETE /transactions/:id" do
-  #   let!(:user) { create(:user) }
-
-  #   before do
-  #     delete "/transactions/#{user.id}"
-  #   end
-
-  #   it "deletes the user" do
-  #     expect(User.count).to eq(0)
-  #   end
-
-  #   it "returns a success response" do
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
 end
