@@ -4,7 +4,6 @@
 FactoryBot.define do
   factory :transaction do
     amount { 100 }
-    currency { 'KES' }
     date_of_transaction { Time.zone.now }
     sender { create(:account) }
     recipient { create(:account) }

@@ -20,7 +20,7 @@ class Transaction < ApplicationRecord
   # after_save :check_user
 
   # Validations
-  validates_presence_of :amount, :currency, :sender_id, :recipient_id, :transaction_type
+  validates_presence_of :amount, :sender_id, :recipient_id, :transaction_type
   validates :amount, numericality: { greater_than: 0 }
   validates :date_of_transaction, comparison: { less_than: Time.now.strftime('%Y%m%d%H%M%S%L') }
 

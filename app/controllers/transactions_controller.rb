@@ -24,7 +24,7 @@ class TransactionsController < ApplicationController
 
   def transaction_params
     params.permit(
-      :amount, :currency, :date_of_transaction, :sender_id, :recipient_id, :transaction_type, :reference
+      :amount, :date_of_transaction, :sender_id, :recipient_id, :transaction_type, :reference
     )
   end
 end
