@@ -21,6 +21,7 @@ class ProcessStatementRequest < ApplicationService
       end
     end
 
+    # TransactionMailer.send_csv(@user.email, data).deliver_now
     TransactionStatementJob.perform_later(@user.email, data)
   end
 end
