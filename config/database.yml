@@ -24,7 +24,7 @@ default: &default
 development:
   <<: *default
   database: quikk_money_transfer_development
-  url: <%= ENV["DEV_DB_URL"] %>
+  # url: <%= ENV["DEV_DB_URL"] %>
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
@@ -58,9 +58,9 @@ development:
 test:
   <<: *default
   database: quikk_money_transfer_test
-  url: <%= ENV["TEST_DB_URL"] %>
-  username: postgres
-  password: postgres
+  # url: <%= ENV["TEST_DB_URL"] %>
+  # username: postgres
+  # password: postgres
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
