@@ -8,7 +8,7 @@ class User < ApplicationRecord
   after_create :create_user_account
   # Associations
   has_one :account
-  has_many :transactions, through: :account
+  has_many :sender_transactions, through: :account
   has_many :requests
   # Validations
   validates_presence_of :surname, :othernames, :email, :mobile, :password_digest

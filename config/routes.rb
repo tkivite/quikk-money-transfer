@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :notifications
-  resources :requests
+  resources :statement_requests
   resources :transactions
   resources :accounts
   resources :users, param: :_id
