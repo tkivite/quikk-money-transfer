@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Transaction < ApplicationRecord
-  self.implicit_order_column = 'created_at'
   # scope :sent_transactions, ->(current_user) { where sender_id: current_user.account.id }
   scope :my_transactions, lambda { |current_user|
                             where(['recipient_id = ? or sender_id = ? ', current_user.account.id.to_s, current_user.account.id.to_s])

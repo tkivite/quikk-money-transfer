@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   enum :status, %i[pending active inactive]
   before_save :set_default_values
+  after_create :create_user_account
   # Associations
   has_one :account
   has_many :transactions, through: :account
@@ -15,6 +16,16 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   def set_default_values
+    self.status ||= :active
+  end
+  def create_user_account
     self.status ||= :pending
+  end
+  def create_user_account
+    Account.create(
+      account_number: self.surname,
+      user_id: self.id,
+      status: 1
+    )
   end
 end

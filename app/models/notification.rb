@@ -5,7 +5,6 @@ class Notification < ApplicationRecord
   enum :status, %i[pending sent failed]
   before_save :set_default_values
 
-  self.implicit_order_column = 'created_at'
   scope :my_notifications, lambda { |current_user|
                             where(['recipient = ? or recipient = ? ', current_user.mobile, current_user.email])
                           }
