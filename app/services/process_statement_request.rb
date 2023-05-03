@@ -5,11 +5,14 @@ class ProcessStatementRequest < ApplicationService
 
   def initialize(request)
     @request = request
+    @user = @request.user
   end
 
   def call
-    p '====================EMAIL============================== '
-    p "Should sent email to #{@request.user.email} "
-    p '=====================EMAIL============================= '
+    transactions = Transaction.my_transactions(@user)
+    transactions = transactions.where(created_at: @request.start_date.beginning_of_day..@request.end_date.end_of_day)
+    byebug
+    puts transactions
+
   end
 end

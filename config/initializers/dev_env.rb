@@ -2,4 +2,4 @@ ENV["DEV_DB_URL"] = "postgres://postgres:postgres@localhost/quikk_money_transfer
 ENV["TEST_DB_URL"] = "postgres://postgres:postgres@localhost/quikk_money_transfer_test"
 ENV["PROD_DB_URL"] = "postgres://postgres:postgres@localhost/quikk_money_transfer_production"
 ENV["JWT_TOKEN_KEY"] = "keysareawesome"
-ENV["HOLDING_ACCT_ID"] = "keysareawesome"
+ENV["HOLDING_ACCT_ID"] = "137ecfa2-7e9c-4cfd-8075-139042438511"

@@ -7,7 +7,7 @@ class User < ApplicationRecord
   before_save :set_default_values
   # Associations
   has_one :account
-  has_many :transactions, through: :account
+  has_many :sender_transactions, through: :account
   has_many :requests
   # Validations
   validates_presence_of :surname, :othernames, :email, :mobile, :password_digest
