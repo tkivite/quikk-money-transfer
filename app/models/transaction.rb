@@ -18,6 +18,7 @@ class Transaction < ApplicationRecord
               foreign_key: 'recipient_id'
 
   before_save :validate_transaction_type, :set_default_values, :check_user
+  after_create :update_balances
   # after_save :check_user
 
   # Validations
@@ -42,5 +43,9 @@ class Transaction < ApplicationRecord
     self.status ||= 0
     self.date_of_transaction ||= DateTime.current
     self.sender_id = sender_id == recipient_id ? ENV['HOLDING_ACCT_ID'] : sender_id
+  end
+
+  def update_balances
+    TransactionManager::FundsTransfer.call(self)
   end
 end

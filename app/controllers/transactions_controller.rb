@@ -12,7 +12,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(transaction_params)
     if @transaction.save
       # transaction_service to update accts and send alerts
-      TransactionManager::FundsTransfer.call(@transaction)
+      # TransactionManager::FundsTransfer.call(@transaction)
       render json: @transaction, status: :created
     else
       render json: { errors: @transaction.errors.full_messages },
