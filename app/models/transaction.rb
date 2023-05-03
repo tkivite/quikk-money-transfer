@@ -5,6 +5,15 @@ class Transaction < ApplicationRecord
   scope :my_transactions, lambda { |current_user|
                             where(['recipient_id = ? or sender_id = ? ', current_user.account.id.to_s, current_user.account.id.to_s])
                           }
+  scope :my_topups, lambda { |current_user|
+                            where(['transaction_type = ? and status = ?', '0', 1])
+                          }
+  scope :my_incoming, lambda { |current_user|
+                          where(['recipient_id = ? and transaction_type = ? and status = ? ', current_user.account.id.to_s, '1','1'])
+                        }
+  scope :my_outgoing, lambda { |current_user|
+                          where(['sender_id = ? and transaction_type = ? and status = ?', current_user.account.id.to_s, '1', '1'])
+                        }
 
   enum :status, %i[pending success failed]
   enum :transaction_type, %i[topup fundstransfer]
