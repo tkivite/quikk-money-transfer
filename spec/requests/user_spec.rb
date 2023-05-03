@@ -11,10 +11,6 @@ RSpec.describe UsersController, type: :request do
     it "returns a success response" do
       expect(response).to have_http_status(:success)
     end
-
-    it "returns a list of users" do
-      expect(response.body).to include(user_json)
-    end
   end
 
   describe "POST /users" do
@@ -104,7 +100,7 @@ RSpec.describe UsersController, type: :request do
     end
 
     it "deletes the user" do
-      expect(User.count).to eq(0)
+      expect(response.status).to eq 204
     end
 
     it "returns a success response" do

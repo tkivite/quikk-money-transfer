@@ -7,7 +7,7 @@ class User < ApplicationRecord
   before_save :set_default_values
   after_create :create_user_account
   # Associations
-  has_one :account
+  has_one :account, dependent: :destroy
   has_many :sender_transactions, through: :account
   has_many :requests
   # Validations
@@ -17,9 +17,6 @@ class User < ApplicationRecord
 
   def set_default_values
     self.status ||= :active
-  end
-  def create_user_account
-    self.status ||= :pending
   end
   def create_user_account
     Account.create(

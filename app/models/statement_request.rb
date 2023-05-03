@@ -9,4 +9,6 @@ class StatementRequest < ApplicationRecord
   def set_default_values
     self.status ||= 0
   end
+
+  validates :start_date, :end_date, :request_type, presence: true
 end
